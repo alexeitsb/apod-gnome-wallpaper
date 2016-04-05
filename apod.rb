@@ -11,7 +11,7 @@ nasa_apod_url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"
 download_folder = "/home/alexei/apodfiles"
 
 # Request nasa apod API.
-system("logger [apod] requesting API")
+system("logger -t apod Requesting API")
 response = Net::HTTP.get(URI(nasa_apod_url))
 
 # Check if media type is an image (may be a video or other).
@@ -25,10 +25,10 @@ if JSON.parse(response)["media_type"] == "image"
   # Write file to download folder and set image as gnome wallpaper.  
   File.open("#{download_folder}/#{file_name}", "wb") do |file|
     file.write open(apod_url).read
-    system("logger [apod] file #{file_name} written on #{download_folder}")
+    system("logger -t apod File #{file_name} written on #{download_folder}")
     system("gsettings set org.gnome.desktop.background picture-uri file://#{download_folder}/#{file_name}")
-    system("logger [apod] #{file_name} setted as wallpaper")
+    system("logger -t apod File #{file_name} setted as wallpaper")
   end  
 else
-  system("logger [apod] media type is not an image and nothing will be done")
+  system("logger -t apod Media type is not an image and nothing will be done")
 end
