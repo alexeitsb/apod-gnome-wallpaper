@@ -1,2 +1,3 @@
 # apod-gnome-wallpaper
-Set NASA Astronomy Picture of the Day (apod) as Gnome Wallpaper with Ruby.
+
+* Have your gnome wallpaper with NASA Astronomy Picture of the Day
