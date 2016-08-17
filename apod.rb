@@ -8,7 +8,7 @@ require "json"
 nasa_apod_url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"
 
 # Set folder to save apod file
-download_folder = "/home/alexei/apodfiles"
+download_folder = "#{ENV['HOME']}/apodfiles"
 
 # Request nasa apod API
 system("echo requesting api")
