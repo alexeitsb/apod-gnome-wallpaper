@@ -27,7 +27,7 @@ system("echo media type is #{media_type}")
 # Check if media type is an image (may be a video or something else)
 if media_type == "image"
   # Get the file name
-  file_name = url[url.rindex("/")+1..url.length]  
+  file_name = url[url.rindex("/")+1..url.length]
 
   # Print some info
   system("echo")
@@ -37,7 +37,7 @@ if media_type == "image"
   system("echo")
   system("echo #{explanation}")
   system("echo")
-  
+
   # Write file and set image as gnome wallpaper
   File.open("#{download_folder}/#{file_name}", "wb") do |file|
     file.write open(url).read
@@ -45,7 +45,7 @@ if media_type == "image"
     system("echo setting image as wallpaper")
     system("gsettings set org.gnome.desktop.background picture-uri file://#{download_folder}/#{file_name}")
     system("echo image setted as wallpaper")
-  end  
+  end
 else
   system("echo sorry, at the moment media type is not an image")
 end
