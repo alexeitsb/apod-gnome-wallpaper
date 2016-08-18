@@ -11,9 +11,9 @@ nasa_apod_url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"
 download_folder = "#{ENV['HOME']}/apodfiles"
 
 # Request nasa apod API
-system("echo requesting api")
+puts "requesting api"
 response = Net::HTTP.get(URI(nasa_apod_url))
-system("echo got response")
+puts "got response"
 
 # Parse the response
 date = JSON.parse(response)["date"]
@@ -22,7 +22,7 @@ media_type = JSON.parse(response)["media_type"]
 title = JSON.parse(response)["title"]
 url = JSON.parse(response)["url"]
 
-system("echo media type is #{media_type}")
+puts "media type is #{media_type}"
 
 # Check if media type is an image (may be a video or something else)
 if media_type == "image"
@@ -30,23 +30,23 @@ if media_type == "image"
   file_name = url[url.rindex("/")+1..url.length]
 
   # Print some info
-  system("echo")
-  system("echo #{date}")
-  system("echo")
-  system("echo #{title}")
-  system("echo")
-  system("echo #{explanation}")
-  system("echo")
+  puts
+  puts date
+  puts
+  puts title
+  puts
+  puts explanation
+  puts
 
   # Write file and set image as gnome wallpaper
   File.open("#{download_folder}/#{file_name}", "wb") do |file|
     file.write open(url).read
-    system("echo file #{file_name} written to #{download_folder}")
-    system("echo setting image as wallpaper")
+    puts "file #{file_name} written to #{download_folder}"
+    puts "setting image as wallpaper"
     system("gsettings set org.gnome.desktop.background picture-uri file://#{download_folder}/#{file_name}")
-    system("echo image setted as wallpaper")
+    puts "image setted as wallpaper"
   end
 else
-  system("echo sorry, at the moment media type is not an image")
+  puts "sorry, at the moment media type is not an image"
 end
-system("echo by")
+puts "by"
