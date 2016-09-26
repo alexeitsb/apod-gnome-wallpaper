@@ -49,4 +49,4 @@ if media_type == "image"
 else
   puts "sorry, at the moment media type is not an image"
 end
-puts "by"
+puts "bye"
